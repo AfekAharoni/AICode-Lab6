@@ -8,6 +8,7 @@ import { S04TcpLoss } from "./scenes/S04TcpLoss";
 import { S06Udp } from "./scenes/S06Udp";
 import { S07Race } from "./scenes/S07Race";
 import { S08UseCases } from "./scenes/S08UseCases";
+import { S09Recap } from "./scenes/S09Recap";
 
 // Scene order + length in frames (from public/narration/durations.md).
 // Add each scene here once it's built.
@@ -19,6 +20,7 @@ const SCENES: { id: string; component: React.FC; frames: number }[] = [
   { id: "S06Udp", component: S06Udp, frames: 494 },
   { id: "S07Race", component: S07Race, frames: 429 },
   { id: "S08UseCases", component: S08UseCases, frames: 648 },
+  { id: "S09Recap", component: S09Recap, frames: 367 },
 ];
 
 const Main: React.FC = () => (
