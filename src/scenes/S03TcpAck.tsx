@@ -7,7 +7,7 @@
 //   325–408  "The sender keeps track of which packets have been acknowledged,"  → 2 and 3, faster
 //   416–467  "so it always knows what got through."   → tracker all ✓
 import { Audio, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
-import { Ack, Caption, Endpoints, Packet, SceneLabel, Stage, Wire } from "../components";
+import { Ack, Caption, Endpoints, Packet, SceneLabel, Stage, WaitRing, Wire } from "../components";
 import { COLORS, LAYOUT, WIRE_END, WIRE_START, alongWire, fadeIn, progress } from "../theme";
 
 const QUEUE_Y = 360; // packets wait above the Sender, arrive above the Receiver
@@ -22,22 +22,6 @@ const PACKETS = [
 
 const queueX = (i: number) => LAYOUT.senderX - 100 + i * 100;
 const arrivedX = (i: number) => LAYOUT.receiverX - 100 + i * 100;
-
-/** Small circular timer: ring fills while the sender waits for an ACK. */
-const WaitRing: React.FC<{ x: number; y: number; fill: number; done: boolean }> = ({ x, y, fill, done }) => {
-  const r = 18;
-  const c = 2 * Math.PI * r;
-  return (
-    <svg style={{ position: "absolute", left: x - 24, top: y - 24 }} width={48} height={48}>
-      <circle cx={24} cy={24} r={r} fill="none" stroke={COLORS.boxBorder} strokeWidth={5} />
-      {!done && (
-        <circle cx={24} cy={24} r={r} fill="none" stroke={COLORS.tcp} strokeWidth={5}
-          strokeDasharray={c} strokeDashoffset={c * (1 - fill)} transform="rotate(-90 24 24)" />
-      )}
-      {done && <text x={24} y={33} textAnchor="middle" fontSize={28} fontWeight={800} fill={COLORS.ack}>✓</text>}
-    </svg>
-  );
-};
 
 export const S03TcpAck: React.FC = () => {
   const frame = useCurrentFrame();

@@ -4,8 +4,10 @@ import { FPS, HEIGHT, WIDTH } from "./theme";
 import { S01Intro } from "./scenes/S01Intro";
 import { S02Packets } from "./scenes/S02Packets";
 import { S03TcpAck } from "./scenes/S03TcpAck";
+import { S04TcpLoss } from "./scenes/S04TcpLoss";
 import { S06Udp } from "./scenes/S06Udp";
 import { S07Race } from "./scenes/S07Race";
+import { S08UseCases } from "./scenes/S08UseCases";
 
 // Scene order + length in frames (from public/narration/durations.md).
 // Add each scene here once it's built.
@@ -13,8 +15,10 @@ const SCENES: { id: string; component: React.FC; frames: number }[] = [
   { id: "S01Intro", component: S01Intro, frames: 329 },
   { id: "S02Packets", component: S02Packets, frames: 422 },
   { id: "S03TcpAck", component: S03TcpAck, frames: 498 },
+  { id: "S04TcpLoss", component: S04TcpLoss, frames: 488 },
   { id: "S06Udp", component: S06Udp, frames: 494 },
   { id: "S07Race", component: S07Race, frames: 429 },
+  { id: "S08UseCases", component: S08UseCases, frames: 648 },
 ];
 
 const Main: React.FC = () => (

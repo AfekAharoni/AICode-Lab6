@@ -101,3 +101,26 @@ export const Caption: React.FC<{ text: string; y?: number; opacity?: number; col
     {text}
   </div>
 );
+
+/**
+ * Small circular timer: the ring fills (0→1) while the sender waits for an ACK.
+ * `done` shows a green ✓; `failed` shows a red ring with ! (timeout).
+ */
+export const WaitRing: React.FC<{ x: number; y: number; fill: number; done?: boolean; failed?: boolean }> = ({
+  x, y, fill, done = false, failed = false,
+}) => {
+  const r = 18;
+  const c = 2 * Math.PI * r;
+  const color = failed ? COLORS.lost : COLORS.tcp;
+  return (
+    <svg style={{ position: "absolute", left: x - 24, top: y - 24 }} width={48} height={48}>
+      <circle cx={24} cy={24} r={r} fill="none" stroke={COLORS.boxBorder} strokeWidth={5} />
+      {!done && (
+        <circle cx={24} cy={24} r={r} fill="none" stroke={color} strokeWidth={5}
+          strokeDasharray={c} strokeDashoffset={c * (1 - (failed ? 1 : fill))} transform="rotate(-90 24 24)" />
+      )}
+      {done && <text x={24} y={33} textAnchor="middle" fontSize={28} fontWeight={800} fill={COLORS.ack}>✓</text>}
+      {failed && <text x={24} y={33} textAnchor="middle" fontSize={28} fontWeight={800} fill={COLORS.lost}>!</text>}
+    </svg>
+  );
+};
