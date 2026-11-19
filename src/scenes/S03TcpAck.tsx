@@ -89,9 +89,9 @@ export const S03TcpAck: React.FC = () => {
         opacity: trackerIn, letterSpacing: 1 }}>SENDER'S CHECKLIST</div>
 
       {/* captions, one at a time */}
-      <Caption text="ACK = “got it!”" y={830} color={COLORS.ack} size={48}
+      <Caption text="ACK = “got it!”" y={940} color={COLORS.ack} size={48}
         opacity={fadeIn(frame, 240, 12) * (1 - fadeIn(frame, 320, 12))} />
-      <Caption text="the sender always knows what got through" y={830} color={COLORS.text} size={44}
+      <Caption text="the sender always knows what got through" y={940} color={COLORS.text} size={44}
         opacity={fadeIn(frame, 416, 15)} />
     </Stage>
   );
