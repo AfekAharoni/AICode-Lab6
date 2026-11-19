@@ -2,11 +2,13 @@ import { Composition, Series } from "remotion";
 import { TestClip } from "./TestClip";
 import { FPS, HEIGHT, WIDTH } from "./theme";
 import { S01Intro } from "./scenes/S01Intro";
+import { S06Udp } from "./scenes/S06Udp";
 
 // Scene order + length in frames (from public/narration/durations.md).
 // Add each scene here once it's built.
 const SCENES: { id: string; component: React.FC; frames: number }[] = [
   { id: "S01Intro", component: S01Intro, frames: 329 },
+  { id: "S06Udp", component: S06Udp, frames: 494 },
 ];
 
 const Main: React.FC = () => (
