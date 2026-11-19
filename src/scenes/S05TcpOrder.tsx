@@ -83,7 +83,8 @@ export const S05TcpOrder: React.FC = () => {
   const sort = progress(frame, SORT_START, SORT_DURATION);
   const merge = progress(frame, MERGE_START, MERGE_DURATION);
   const matchIn = fadeIn(frame, MATCH_AT, 15);
-  const slotLabelsIn = fadeIn(frame, SORT_START - 15, 15);
+  // slot labels fade out (220→230) before the merge, so they never overlap the "your data" label
+  const slotLabelsIn = fadeIn(frame, SORT_START - 15, 15) * (1 - fadeIn(frame, MERGE_START - 15, 10));
   const trayLabel = frame < SORT_START + SORT_DURATION ? "buffer: as they arrived" : "buffer: back in order";
 
   return (
@@ -112,7 +113,7 @@ export const S05TcpOrder: React.FC = () => {
       {[1, 2, 3, 4].map((n) => (
         <div key={n} style={{
           position: "absolute", left: slotX(n - 1) - 50, width: 100, top: TRAY_Y + 78, textAlign: "center", whiteSpace: "nowrap",
-          fontSize: 26, fontWeight: 700, color: COLORS.muted, opacity: slotLabelsIn * (1 - merge),
+          fontSize: 26, fontWeight: 700, color: COLORS.muted, opacity: slotLabelsIn,
         }}>#{n}</div>
       ))}
 
